@@ -79,6 +79,42 @@ class Api extends CI_Controller {
 		}
 	}
 
+	function class_communities($method){
+		switch ($method) {
+			case 'list':
+				$query = $this->db->query("select * from class");
+				echo json_encode(array('list' => $query->result()));
+				break;
+			case 'details':
+				$id = $_GET['id'];
+				$query = $this->db->query("select * from class where id = '$id'");
+				echo json_encode($query->row());
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+	}
+
+	function events($method){
+		switch ($method) {
+			case 'list':
+				$query = $this->db->query("select * from events");
+				echo json_encode(array('list' => $query->result()));
+				break;
+			case 'details':
+				$id = $_GET['id'];
+				$query = $this->db->query("select * from events where id = '$id'");
+				echo json_encode($query->row());
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+	}
+
 }
 
 ?>
