@@ -38,7 +38,7 @@ class Api extends CI_Controller {
 
 				$item = $this->db->query("select * from apartment_category_items where apartment_id = '$id' and category_id = '$category_id' and level='$level'");
 				switch ($category_id) {
-					case 1 || 3:
+					case 1:
 						if($level == 0){
 							foreach($item->result() as $row) {
 								$items[]	= array(
@@ -52,6 +52,18 @@ class Api extends CI_Controller {
 						break;
 					case 2:
 						$items = $item->result();
+						break;
+					case 3:
+						if($level == 0){
+							foreach($item->result() as $row) {
+								$items[]	= array(
+												'main'	=> $row->name,
+												'sub'	=> $this->db->query("select * from apartment_category_items where apartment_id = '$id' and category_id = '$category_id' and level='$row->id'")->result()
+											);
+							}			
+						} else {
+							$items = $item->result();	
+						}
 						break;
 					default:
 						$items = $item->result();
