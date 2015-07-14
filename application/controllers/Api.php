@@ -36,15 +36,25 @@ class Api extends CI_Controller {
 				$category = $this->db->query("select * from apartment_category where id='$category_id'");
 
 				$item = $this->db->query("select * from apartment_category_items where apartment_id = '$id' and category_id = '$category_id' and level='$level'");
-				if($level == 0){
-					foreach($item->result() as $row) {
-						$items[]	= array(
-										'main'	=> $row->name,
-										'sub'	=> $this->db->query("select * from apartment_category_items where apartment_id = '$id' and category_id = '$category_id' and level='$row->id'")->result()
-									);
-					}			
-				} else {
-					$items = $item->result();	
+				switch ($category_id) {
+					case 1 || 3:
+						if($level == 0){
+							foreach($item->result() as $row) {
+								$items[]	= array(
+												'main'	=> $row->name,
+												'sub'	=> $this->db->query("select * from apartment_category_items where apartment_id = '$id' and category_id = '$category_id' and level='$row->id'")->result()
+											);
+							}			
+						} else {
+							$items = $item->result();	
+						}
+						break;
+					case 2:
+						$items = $item->result();
+						break;
+					default:
+						$items = $item->result();
+						break;
 				}
 
 				echo json_encode(array('data' => $query->row(), 'category' => $category->row(), 'items' => $items, 'level' => $level));
