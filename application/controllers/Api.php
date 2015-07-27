@@ -23,7 +23,7 @@ class Api extends CI_Controller {
 				$id = $_GET['id'];
 				$query = $this->db->query("select * from apartment where id = '$id'");
 				$category = $this->db->query("select * from apartment_category");
-				$gallery = $this->db->query("select * from apartment_category_items where apartment_id = '$id' and category_id = '2'");
+				$gallery = $this->db->query("select * from apartment_category_items where apartment_id = '$id' and category_id = '2' limit 3");
 
 				echo json_encode(array('data' => $query->row(), 'category' => $category->result(), 'gallery' => $gallery->result()));
 
@@ -42,12 +42,19 @@ class Api extends CI_Controller {
 						if($level == 0){
 							foreach($item->result() as $row) {
 								$items[]	= array(
-												'main'	=> $row->name,
+												'name'	=> $row->name,
+												'id'	=> $row->id,
+												'menu_type'	=> $row->menu_type,
 												'sub'	=> $this->db->query("select * from apartment_category_items where apartment_id = '$id' and category_id = '$category_id' and level='$row->id'")->result()
 											);
 							}			
 						} else {
-							$items = $item->result();	
+							if($item->num_rows() > 0) {
+								$items = $item->result();	
+							} else {
+								$item = $this->db->query("select * from apartment_category_items where apartment_id = '$id' and category_id = '$category_id' and id = '$level'");
+								$items = $item->row();
+							}
 						}
 						break;
 					case 2:
@@ -57,7 +64,9 @@ class Api extends CI_Controller {
 						if($level == 0){
 							foreach($item->result() as $row) {
 								$items[]	= array(
-												'main'	=> $row->name,
+												'name'	=> $row->name,
+												'id'	=> $row->id,
+												'menu_type'	=> $row->menu_type,
 												'sub'	=> $this->db->query("select * from apartment_category_items where apartment_id = '$id' and category_id = '$category_id' and level='$row->id'")->result()
 											);
 							}			

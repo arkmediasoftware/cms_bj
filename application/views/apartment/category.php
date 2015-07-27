@@ -24,6 +24,7 @@ $query2 = $this->db->query("select * from apartment_category where id = '$catego
 				<tr>
 					<th width="200px">Name</th>
 					<th width="200px">Description</th>
+					<th width="200px">Type</th>
 					<th width="100px">Action</th>
 				</tr>
 			</thead>
@@ -36,6 +37,7 @@ $query2 = $this->db->query("select * from apartment_category where id = '$catego
 							<tr>
 								<td><a href='".site_url('apartment?p=category&id='.$query->row('id').'&category='.$query2->row('id').'&level='.$row->id)."' title='Click to details'>".$row->name."</a></td>
 								<td>".$row->description."</td>
+								<td>".$row->menu_type."</td>
 								<td>
 									<a href=\"javascript:;\" title=\"Edit\" class='btn btn-xs btn-warning'>Edit</a>
 									<a href=\"javascript:;\" title=\"Delete\" class='btn btn-xs btn-danger'>Delete</a>

@@ -55,6 +55,7 @@ class Apartment extends MY_Controller {
 					print_r($data);
 				}
 
+				$apartment['menu_type'] = $this->input->post('menu_type');
 				$apartment['name'] = $this->input->post('name');
 
 				$apartment['apartment_id'] = $_GET['id'];

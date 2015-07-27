@@ -6,6 +6,16 @@
   </div>
   <form class="form-horizontal" id="add_apartment" method="post" action="<?php echo site_url('apartment/ajax/add_category?id='.$_GET['id'].'&category='.$_GET['category'].'&level='.$_GET['level']) ?>">
     <div class="form-group">
+      <label for="name" class="col-sm-2 control-label">Type</label>
+      <div class="col-sm-10">
+          <select class="form-control" name="menu_type">
+            <option value="text">Text</option>
+            <option value="details">Details</option>
+            <option value="header_menu">Header Menu</option>
+          </select>
+      </div>
+    </div>
+    <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Name</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" name="name" id="name" placeholder="Items Name" required>
