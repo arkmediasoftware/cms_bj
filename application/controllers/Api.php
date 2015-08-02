@@ -16,8 +16,18 @@ class Api extends CI_Controller {
 	function apartment($method = null){
 		switch ($method) {
 			case 'list':
-				$query = $this->db->query("select * from apartment");
-				echo json_encode(array('list' => $query->result()));
+				$id = (isset($_GET['id'])) ? $_GET['id'] : 0;
+				$first_apartment = $this->db->query("select * from apartment order by id asc limit 1");
+
+				if($id > 0) {
+					$main = $this->db->query("select * from apartment where id = '".$id." limit 1'");
+				} else {
+					$main = $this->db->query("select * from apartment where id = '".$first_apartment->row('id')." limit 1'");
+				}
+				$gallery = $this->db->query("select * from apartment_category_items where apartment_id = '".$main->row('id')."' and category_id = '2'");
+				$list = $this->db->query("select * from apartment where id != '".$main->row('id')."'");
+
+				echo json_encode(array('main' => $main->row(), 'gallery' => $gallery->result(), 'list' => $list->result()));
 				break;
 			case 'details':
 				$id = $_GET['id'];
