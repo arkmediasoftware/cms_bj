@@ -14,6 +14,7 @@
     <link href="<?php echo base_url('asset') ?>/dist/css/colorbox.css" rel="stylesheet">
     <link href="<?php echo base_url('asset') ?>/dist/css/jquery.dataTables.css" rel="stylesheet">
     <link href="<?php echo base_url('asset') ?>/dist/css/jquery.dataTables_themeroller.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.4.5/styles.min.js">
 
     <link rel="shortcut icon" href="<?php echo base_url('asset') ?>/img/favicon.ico">
 
@@ -24,7 +25,8 @@
     <![endif]-->
 
     <script src="<?php echo base_url('asset') ?>/dist/js/vendor/jquery.min.js"></script>
-
+    <script src="//cdn.ckeditor.com/4.5.1/basic/ckeditor.js"></script>
+    
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-4X-TOTtdNFy52CEYe-DytzWv7caEWlk">
     </script>

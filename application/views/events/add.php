@@ -20,7 +20,7 @@
     <div class="form-group">
       <label for="description" class="col-sm-2 control-label">Description</label>
       <div class="col-sm-10">
-        <textarea class="form-control" name="description" id="description"></textarea>
+        <textarea class="form-control ckeditor" name="description" id="description"></textarea>
       </div>
     </div>
     <div class="form-group">
@@ -55,6 +55,10 @@ $(document).ready(function(){
   $("#add_apartment").ajaxForm({
     success:function(data){
       window.location = "<?php echo site_url('events') ?>";
+    },
+    beforeSubmit:function(){
+      var editor_data = CKEDITOR.instances.big_info.getData();
+      alert(editor_data);
     }
   });
 
