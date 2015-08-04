@@ -13,6 +13,34 @@ class Api extends CI_Controller {
 
 	function index(){}
 
+	function auth($method){
+		switch ($method) {
+			case 'login':
+				$psm = $_GET['psm'];
+				$check_psm = $this->db->query("select * from tenant_registered where lower(psm_number) = '$psm'");
+				if($check_psm->num_rows() > 0) {
+					$this->db->query("update tenant_registered set login = 'login' where lower(psm_number) = '".strtolower($psm)."'");
+					echo json_encode(array('status' => 'success', 'data' => $check_psm->row()));
+				} else {
+					echo json_encode(array('status' => 'failed'));
+				}
+				break;
+			case 'logout':
+				$psm = $_GET['psm'];
+				$this->db->query("update tenant_registered set login = 'logout' where lower(psm_number) = '".strtolower($psm)."'");
+				echo json_encode(array('status'=>'logout'));
+			break;
+			case 'get':
+				$psm = $_GET['psm'];
+				$check_psm = $this->db->query("select * from tenant_registered where lower(psm_number) = '$psm'");
+				echo json_encode($check_psm->row());
+			break;
+			default:
+				# code...
+				break;
+		}
+	}
+
 	function apartment($method = null){
 		switch ($method) {
 			case 'list':
