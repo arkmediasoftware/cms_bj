@@ -55,10 +55,6 @@ $(document).ready(function(){
   $("#add_apartment").ajaxForm({
     success:function(data){
       window.location = "<?php echo site_url('events') ?>";
-    },
-    beforeSubmit:function(){
-      var editor_data = CKEDITOR.instances.big_info.getData();
-      alert(editor_data);
     }
   });
 
