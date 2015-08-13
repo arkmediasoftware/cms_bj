@@ -12,6 +12,7 @@
             <option value="text">Text</option>
             <option value="details">Details</option>
             <option value="header_menu">Header Menu</option>
+            <option value="phone">Phone</option>
           </select>
       </div>
     </div>
