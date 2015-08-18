@@ -10,7 +10,7 @@
     <li><a href="<?php echo site_url('dashboard') ?>">Dashboard</a></li>
     <li><a href="<?php echo site_url('apartment') ?>">Apartment</a></li>
     <li><a href="<?php echo site_url('class_communities') ?>">Class & Communities</a></li>
-    <li><a href="<?php echo site_url('events') ?>">Events Upcomming</a></li>
+    <li><a href="<?php echo site_url('events') ?>">Events Upcoming</a></li>
     <li><a href="<?php echo site_url('about_us') ?>">About Us</a></li>
    </ul>
 </div>

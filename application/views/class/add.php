@@ -55,6 +55,13 @@ $(document).ready(function(){
   $("#add_apartment").ajaxForm({
     success:function(data){
       window.location = "<?php echo site_url('class_communities') ?>";
+      $('button[type=submit]').removeClass('disabled').html('Submit');
+    },
+    beforeSubmit:function(){
+      $('button[type=submit]').addClass('disabled').html('Submitting...');
+    },
+    error:function(){
+      alert('Error Submitting')
     }
   });
 

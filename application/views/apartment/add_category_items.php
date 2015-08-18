@@ -66,6 +66,13 @@ $(document).ready(function(){
   $("#add_apartment").ajaxForm({
     success:function(data){
       window.location = "<?php echo site_url('apartment?p=category&id='.$_GET['id'].'&category='.$_GET['category'].'&level='.$_GET['level']) ?>";
+      $('button[type=submit]').removeClass('disabled').html('Submit');
+    },
+    beforeSubmit:function(){
+      $('button[type=submit]').addClass('disabled').html('Submitting...');
+    },
+    error:function(){
+      alert('Error Submitting')
     }
   });
 
